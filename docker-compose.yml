@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+
+  db-postgres:
+    container_name: db-postgres
+    image: postgres:14.1
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+
+  db-clickhouse:
+    container_name: db-clickhouse
+    image: yandex/clickhouse-server:20.3
+    environment:
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+      CLICKHOUSE_DB: ${CLICKHOUSE_DB}
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD}
+    ports:
+      - "${CLICKHOUSE_PORT}:${CLICKHOUSE_PORT}"
+    volumes:
+      - ./data/clickhouse:/var/lib/clickhouse
+
+  jupyter-notebook:
+    container_name: jupyter-notebook
+    image: asposh/jupyter-notebook-build:0.3
+    environment:
+      NB_USER: ${NB_USER}
+      GRANT_SUDO: "yes"
+    ports:
+      - "${NB_PORT}:${NB_PORT}"
+    user: ${NB_USER}
+    command: ["jupyter", "notebook", "--allow-root", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+    volumes:
+      - ./data/notebook/work:${NB_WORKDIR}
