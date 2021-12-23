@@ -1,1 +1,4 @@
-data
+/data/clickhouse/*
+/data/notebook/work/*
+/data/postgresql/*
+!.gitkeep
