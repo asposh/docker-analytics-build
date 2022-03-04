@@ -7,7 +7,7 @@
 - Clickhouse
 
 ### How to start
-1. Make sure you have <a href="https://docker.com" target="_blank">Docker</a> installed
+1. Make sure you have <a href="https://docker.com" target="_blank">Docker</a> and <a href="https://docs.docker.com/compose/" target="_blank">Docker Compose</a> installed
 2. Navigate to the current repository path in your storage, using cli
 3. Run in cli: `docker-compose up -d` 
 <br/>or specified containers: `docker-compose up -d jupyter-notebook db-postgres db-clickhouse`
