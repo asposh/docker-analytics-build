@@ -30,7 +30,7 @@ services:
 
   jupyter-notebook:
     container_name: jupyter-notebook
-    image: asposh/jupyter-notebook-build:0.3
+    image: asposh/jupyter-notebook-build:latest
     environment:
       NB_USER: ${NB_USER}
       GRANT_SUDO: "yes"
