@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook:33add21fab64
+FROM jupyter/scipy-notebook:x86_64-2023-10-20
 
 # Install python packages
 COPY ./requirements.txt /etc/notebook/requirements.txt
